@@ -29,6 +29,7 @@ import com.cburch.logisim.gui.menu.LogisimMenuBar;
 import com.cburch.logisim.gui.menu.WindowManagers;
 import com.cburch.logisim.gui.search.DoubleShiftTrigger;
 import com.cburch.logisim.gui.test.TestBench;
+import com.cburch.logisim.mcp.McpServer;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.proj.Project;
 import com.cburch.logisim.proj.ProjectActions;
@@ -1010,6 +1011,9 @@ public class Startup implements AWTEventListener {
     // if user has double-clicked a file to open, we'll
     // use that as the file to open now.
     initialized = true;
+
+    // Start the agent (MCP) server if the user enabled it (Help > Agent Connection).
+    McpServer.startIfEnabled();
 
     // Check for unnamed autosaves here and allow to save them and/or open them again
     if (testVector == null && testCircPathInput == null) {

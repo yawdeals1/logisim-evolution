@@ -663,6 +663,15 @@ public class AppPreferences {
       create(new PrefMonitorBoolean("NoOpenPinWarnings", false));
   public static final PrefMonitor<Boolean> VhdlKeywordsUpperCase =
       create(new PrefMonitorBoolean("VhdlKeywordsUpperCase", true));
+  // Agent connection (MCP server) preferences
+  public static final PrefMonitor<Boolean> MCP_ENABLED =
+      create(new PrefMonitorBoolean("mcpServerEnabled", false));
+  public static final PrefMonitor<Integer> MCP_PORT =
+      create(new PrefMonitorInt("mcpServerPort", 7531));
+  public static final PrefMonitor<String> MCP_TOKEN =
+      create(new PrefMonitorString("mcpServerToken", ""));
+  public static final PrefMonitor<Boolean> MCP_REQUIRE_TOKEN =
+      create(new PrefMonitorBoolean("mcpServerRequireToken", true));
   // file preferences
   public static final PrefMonitor<Boolean> REMOVE_UNUSED_LIBRARIES =
       create(new PrefMonitorBoolean("removeUnusedLibs", false));

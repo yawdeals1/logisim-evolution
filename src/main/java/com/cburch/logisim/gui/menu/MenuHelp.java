@@ -18,6 +18,7 @@ import com.cburch.logisim.gui.search.OmniSearchDialog;
 import com.cburch.logisim.gui.search.SearchContext;
 import com.cburch.logisim.gui.search.providers.MenuSearchProvider;
 import com.cburch.logisim.gui.start.About;
+import com.cburch.logisim.mcp.McpDialog;
 import com.cburch.logisim.prefs.AppPreferences;
 import com.cburch.logisim.prefs.PrefMonitorKeyStroke;
 import com.cburch.logisim.util.MacCompatibility;
@@ -44,6 +45,7 @@ class MenuHelp extends Menu implements ActionListener {
   private final JMenuItem library = new JMenuItem();
   private final JMenuItem about = new JMenuItem();
   private final JMenuItem www = new JMenuItem();
+  private final JMenuItem agent = new JMenuItem();
   private HelpSet helpSet;
   private String helpSetUrl = "";
   private JHelp helpComponent;
@@ -58,6 +60,7 @@ class MenuHelp extends Menu implements ActionListener {
     library.addActionListener(this);
     about.addActionListener(this);
     www.addActionListener(this);
+    agent.addActionListener(this);
 
     // Keep the entry point out of its own results; finding "Find Action" is never what was wanted.
     search.putClientProperty(MenuSearchProvider.EXCLUDE_PROPERTY, Boolean.TRUE);
@@ -75,8 +78,9 @@ class MenuHelp extends Menu implements ActionListener {
       addSeparator();
       add(www);
     }
+    addSeparator();
+    add(agent);
     if (!MacCompatibility.isAboutAutomaticallyPresent()) {
-      addSeparator();
       add(about);
     }
   }
@@ -96,6 +100,8 @@ class MenuHelp extends Menu implements ActionListener {
       About.showAboutDialog(menubar.getParentFrame());
     } else if (www.equals(src)) {
       openProjectWebsite();
+    } else if (agent.equals(src)) {
+      McpDialog.showDialog(menubar.getParentFrame());
     }
   }
 
@@ -204,6 +210,7 @@ class MenuHelp extends Menu implements ActionListener {
     library.setText(S.get("helpLibraryItem"));
     about.setText(S.get("helpAboutItem"));
     www.setText(S.get("helpProjectWebsite"));
+    agent.setText(S.get("helpAgentConnectionItem"));
     if (helpFrame != null) {
       helpFrame.setLocale(Locale.getDefault());
       loadBroker();
